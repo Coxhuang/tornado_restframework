@@ -12,15 +12,13 @@ import tornado.httpserver
 import tornado.options
 from tornado.options import define, options
 from utils.common.urls.url import url_obj
-from urllib.parse import urljoin
 
 define("port", default=8000, type=int)  # 设置一个监听地址,全局变量
 
 if __name__ == "__main__":
     tornado.options.parse_command_line() # 允许命令行启动程序
-    print(url_obj.register_url())
     app = tornado.web.Application(
-        url_obj.register_url(),
+        url_obj.register_url(), # url
         websocket_ping_interval = 3, # WebSocket ping探活包发送间隔秒数
         websocket_ping_timeout=10,
         debug = True,
